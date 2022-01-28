@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import { withRouter, NavLink } from "react-router-dom";
+
+
 
 import ChatWindow from './ChatWindow/ChatWindow';
 import ChatInput from './ChatInput/ChatInput';
+import { connect } from 'react-redux';
 
-const Chat = () => {
+const Chat = (props) => {
+
     const [ chat, setChat ] = useState([]);
     const latestChat = useRef(null);
+
+    console.log(props);
 
     latestChat.current = chat;
 
@@ -42,7 +49,7 @@ const Chat = () => {
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': ''
+                    'Authorization': 'Bearer ' + props.auth.user,
                 }
             });
         }
@@ -60,4 +67,10 @@ const Chat = () => {
     );
 };
 
-export default Chat;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    };
+};
+
+export default withRouter(connect(mapStateToProps)(Chat));
