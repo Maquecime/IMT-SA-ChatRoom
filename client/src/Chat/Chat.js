@@ -41,7 +41,8 @@ const Chat = () => {
                 method: 'POST', 
                 body: JSON.stringify(chatMessage),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
                 }
             });
         }

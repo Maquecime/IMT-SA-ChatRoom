@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using api.Models;
 using Chatty.Api.Hubs;
 using Chatty.Api.Hubs.Clients;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("[controller]")]
     public class ChatController : ControllerBase
     {
