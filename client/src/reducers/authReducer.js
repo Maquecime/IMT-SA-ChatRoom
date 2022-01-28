@@ -4,10 +4,11 @@ const authReducer = (state = {
 }, action) => {
     switch (action.type) {
         case "LOGIN":
-            state = { ...state, user: action.payload, isAuthenticated: true };
+            console.log(action)
+            state = { ...state, user: action.payload, username: action.username, isAuthenticated: true };
             break;
         case "LOGOUT":
-            state = { ...state, user: '', isAuthenticated: false };
+            state = { ...state, user: '', username: '', isAuthenticated: false };
             break;
         default:
             break;

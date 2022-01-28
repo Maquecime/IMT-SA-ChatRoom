@@ -54,7 +54,8 @@ namespace backend_test.Controllers
                   signingCredentials: creds);
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    username = payload.Email,
                 });
             }
             catch (Exception ex)

@@ -1,8 +1,9 @@
-export function login(token) {
+export function login(token, username) {
     return dispath => {
         dispath({
             type: "LOGIN",
-            payload: token
+            payload: token,
+            username: username
         });
     }
 }
@@ -12,7 +13,8 @@ export function logout() {
     return dispath => {
         dispath({
             type: "LOGOUT",
-            payload: ""
+            payload: "",
+            username: ""
         });
     };
 }

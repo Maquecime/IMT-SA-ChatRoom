@@ -29,9 +29,10 @@ class Login extends Component {
     fetch(config.GOOGLE_AUTH_CALLBACK_URL, options)
       .then(r => {
         r.json().then(user => {
+          console.log(user);
           const token = user.token;
-          console.log(token);
-          this.props.login(token);
+          const username = user.username;
+          this.props.login(token,username);
         });
       })
   };
@@ -72,8 +73,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (token) => {
-      dispatch(login(token));
+    login: (token, username) => {
+      dispatch(login(token, username));
     }
   }
 };

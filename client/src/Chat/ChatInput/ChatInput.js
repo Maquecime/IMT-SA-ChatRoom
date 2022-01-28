@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+
 
 const ChatInput = (props) => {
-    const [user, setUser] = useState('');
     const [message, setMessage] = useState('');
+
+    console.log(props.auth)
+
+    const user = props.auth.username;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -18,10 +24,6 @@ const ChatInput = (props) => {
         }
     }
 
-    const onUserUpdate = (e) => {
-        setUser(e.target.value);
-    }
-
     const onMessageUpdate = (e) => {
         setMessage(e.target.value);
     }
@@ -29,14 +31,6 @@ const ChatInput = (props) => {
     return (
         <form 
             onSubmit={onSubmit}>
-            <label htmlFor="user">User:</label>
-            <br />
-            <input 
-                id="user" 
-                name="user" 
-                value={user}
-                onChange={onUserUpdate} />
-            <br/>
             <label htmlFor="message">Message:</label>
             <br />
             <input 
@@ -51,4 +45,10 @@ const ChatInput = (props) => {
     )
 };
 
-export default ChatInput;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    };
+};
+
+export default withRouter(connect(mapStateToProps)(ChatInput));

@@ -13,8 +13,6 @@ const Chat = (props) => {
     const [ chat, setChat ] = useState([]);
     const latestChat = useRef(null);
 
-    console.log(props);
-
     latestChat.current = chat;
 
     useEffect(() => {
